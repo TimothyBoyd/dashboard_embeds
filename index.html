@@ -34,13 +34,13 @@
 
     .tables-grid {
       display: flex;
-      gap: 16px;
-      align-items: flex-start;
+      gap: 12px;
     }
     
     .table-card {
       flex: 1;
-      min-width: 0;   /* THIS is the magic that prevents overflow */
+      min-width: 0;
+      padding: 12px;/* THIS is the magic that prevents overflow */
     }
 
     .table-card {
@@ -61,12 +61,13 @@
     table.encampment-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
+      line-height: 1.1;
     }
 
     table.encampment-table th,
     table.encampment-table td {
-      padding: 6px 8px;
+      padding: 4px 6px;
       text-align: left;
       border-bottom: 1px solid #eaeaea;
     }
