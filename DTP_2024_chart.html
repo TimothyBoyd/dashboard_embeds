@@ -4,16 +4,17 @@
 <div>
 <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
 <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<div id="dtp2024chart" class="plotly-graph-div" style="height:400px; width:1200px;"></div>
+<div id="dtpchart" class="plotly-graph-div" style="height:420px; width:1200px;"></div>
 <script type="text/javascript">
 window.PLOTLYENV = window.PLOTLYENV || {};
-if (document.getElementById("dtp2024chart")) {
+if (document.getElementById("dtpchart")) {
   var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  var counts2024 = [800,841,695,690,712,734,762,742,668,747,719,823];
+  var counts2024 = [800,841,695,690,712,734,762,742,655,816,824,793];
+  var counts2025 = [911,922,845,960,798,846,null,null,766,null,null,1026];
   var colors = ["#1f4aff","#d62728","#2ca02c","#ff00ff","#8c564b","#17becf","#b5a642","#98df8a","#7f7f7f","#c51b8a","#6a1b6a","#f4a3b4"];
 
   Plotly.newPlot(
-    "dtp2024chart",
+    "dtpchart",
     [
       {
         hovertemplate: "<b>2024</b><br>%{x}: %{y}<extra></extra>",
@@ -33,12 +34,34 @@ if (document.getElementById("dtp2024chart")) {
         x: months,
         y: counts2024,
         type: "scatter"
+      },
+      {
+        hovertemplate: "<b>2025</b><br>%{x}: %{y}<extra></extra>",
+        line: {color: "#e8c400", width: 3},
+        mode: "lines",
+        name: "2025",
+        x: months,
+        y: counts2025,
+        connectgaps: false,
+        type: "scatter"
+      },
+      {
+        hovertemplate: "<b>2025</b><br>%{x}: %{y}<extra></extra>",
+        marker: {color: colors, line: {color: "#e8c400", width: 1}, size: 11},
+        mode: "markers",
+        name: "2025 Monthly Points",
+        showlegend: false,
+        x: months,
+        y: counts2025,
+        type: "scatter"
       }
     ],
     {
       title: {
         font: {size: 24, color: "navy", family: "Roboto"},
-        text: "<b>Downtown Partnership Encampment Counts by Month</b>"
+        text: "<b>DTP Encampment Counts by Month</b>",
+        x: 0,
+        xanchor: "left"
       },
       xaxis: {
         title: {font: {size: 14, family: "Roboto"}, text: "<b>Month</b>"},
@@ -62,9 +85,17 @@ if (document.getElementById("dtp2024chart")) {
         x: 1
       },
       hoverlabel: {font: {size: 12, family: "Roboto"}},
-      margin: {l: 50, r: 30, t: 70, b: 50},
-      width: 1400,
-      height: 300
+      margin: {l: 50, r: 30, t: 80, b: 70},
+      annotations: [
+        {
+          text: "2025: Jul, Aug, Oct, Nov not yet aggregated",
+          xref: "paper", yref: "paper",
+          x: 0, y: -0.2,
+          showarrow: false,
+          font: {size: 11, color: "#7a5c00", family: "Roboto"}
+        }
+      ],
+      autosize: true
     },
     {responsive: true}
   );
