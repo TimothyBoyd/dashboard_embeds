@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DTP Encampment Counts — Year Comparison</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+  <title>DTP Encampment Counts — 2024 vs 2025</title>
   <style>
     body {
       margin: 0;
@@ -13,21 +12,27 @@
       color: #111;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-    .wrapper { max-width: 1100px; margin: 0 auto; }
+    .wrapper { max-width: 700px; margin: 0 auto; }
     h1 { margin: 0 0 8px 0; font-size: 2rem; line-height: 1.2; color: navy; }
     .subtitle { margin: 0 0 24px 0; color: #555; font-size: 1rem; }
-    .chart-card {
+    .table-card {
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      padding: 24px 24px 12px;
+      padding: 20px;
       border: 1px solid #e5e5e5;
     }
-    .totals-row { display: flex; gap: 24px; margin-bottom: 18px; flex-wrap: wrap; }
-    .totals-row .stat { font-size: 0.95rem; color: #333; }
-    .totals-row .stat b { display: block; font-size: 1.4rem; }
+    .totals-row { margin: 0 0 16px 0; }
+    .totals-row .stat { font-size: 0.95rem; color: #333; margin-right: 28px; display: inline-block; }
+    .totals-row .stat b { display: block; font-size: 1.4rem; margin-top: 2px; }
     .stat.y2024 b { color: #1f4aff; }
     .stat.y2025 b { color: #d62728; }
+    table.encampment-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    table.encampment-table th, table.encampment-table td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #eaeaea; }
+    table.encampment-table th { background: #f8f8f8; font-weight: 700; color: #111; }
+    table.encampment-table th.num, table.encampment-table td.num { text-align: right; }
+    table.encampment-table tr:last-child td { border-bottom: none; }
+    .pending { color: #999; font-style: italic; }
     .pending-banner {
       background: #fff8e1;
       border: 1px solid #f0d98c;
@@ -37,72 +42,24 @@
       color: #7a5c00;
       margin-bottom: 16px;
     }
-    canvas { max-height: 420px; }
     .footer-note { margin-top: 18px; font-size: 0.9rem; color: #666; }
-  </style>
+</style>
 </head>
 <body>
   <div class="wrapper">
     <h1>DTP Encampment Counts — 2024 vs 2025</h1>
     <p class="subtitle">Monthly totals from Downtown Partnership GeoAI detection exports</p>
 
-    <div class="chart-card">
+    <div class="table-card">
       <div class="totals-row">
-        <div class="stat y2024">2024 Total<b>9,064</b></div>
-        <div class="stat y2025">2025 Total<b>pending</b></div>
+        <span class="stat y2024">2024 Total<b>9,064</b></span>
+        <span class="stat y2025">2025 Total<b>pending</b></span>
       </div>
-      <div class="pending-banner">DTP 2025 data not yet available — the 2025 line will populate once that export is aggregated. Update the <code>dtp2025</code> array below when it's ready.</div>
-      <canvas id="dtpChart"></canvas>
+      <div class="pending-banner">DTP 2025 data not yet available — replace the 2025 column once that export is aggregated.</div>
+      <table class="encampment-table"><thead><tr><th>Month</th><th class="num">2024</th><th class="num">2025</th></tr></thead><tbody><tr style="color:#1f4aff; font-weight:600;"><td>January</td><td class="num">800</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#d62728; font-weight:600;"><td>February</td><td class="num">841</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#2ca02c; font-weight:600;"><td>March</td><td class="num">695</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#ff00ff; font-weight:600;"><td>April</td><td class="num">690</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#8c564b; font-weight:600;"><td>May</td><td class="num">712</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#17becf; font-weight:600;"><td>June</td><td class="num">734</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#b5a642; font-weight:600;"><td>July</td><td class="num">762</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#98df8a; font-weight:600;"><td>August</td><td class="num">742</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#7f7f7f; font-weight:600;"><td>September</td><td class="num">655</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#c51b8a; font-weight:600;"><td>October</td><td class="num">816</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#6a1b6a; font-weight:600;"><td>November</td><td class="num">824</td><td class="num"><span class="pending">—</span></td></tr><tr style="color:#f4a3b4; font-weight:600;"><td>December</td><td class="num">793</td><td class="num"><span class="pending">—</span></td></tr></tbody></table>
     </div>
 
-    <p class="footer-note">
-      Source: Downtown Partnership encampment site count exports (MONTH/YEAR/TYPE/COUNT fields), aggregated monthly.
-    </p>
+    <p class="footer-note">Source: Downtown Partnership encampment site count exports (MONTH/YEAR/TYPE/COUNT fields), aggregated monthly.</p>
   </div>
-
-  <script>
-    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const dtp2024 = [800, 841, 695, 690, 712, 734, 762, 742, 655, 816, 824, 793];
-    const dtp2025 = [null, null, null, null, null, null, null, null, null, null, null, null]; // fill in once 2025 DTP export is aggregated
-
-    new Chart(document.getElementById('dtpChart'), {
-      type: 'line',
-      data: {
-        labels: months,
-        datasets: [
-          {
-            label: '2024',
-            data: dtp2024,
-            borderColor: '#1f4aff',
-            backgroundColor: '#1f4aff',
-            tension: 0.25,
-            pointRadius: 4,
-            borderWidth: 2.5,
-          },
-          {
-            label: '2025',
-            data: dtp2025,
-            borderColor: '#d62728',
-            backgroundColor: '#d62728',
-            tension: 0.25,
-            pointRadius: 4,
-            borderWidth: 2.5,
-            spanGaps: false,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        interaction: { mode: 'index', intersect: false },
-        plugins: {
-          legend: { position: 'top', labels: { usePointStyle: true } },
-          tooltip: { enabled: true },
-        },
-        scales: {
-          y: { beginAtZero: true, title: { display: true, text: 'Total Count' } },
-        },
-      },
-    });
-  </script>
 </body>
 </html>
