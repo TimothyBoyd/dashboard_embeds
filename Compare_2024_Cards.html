@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2024 311 vs DTP Encampment Counts</title>
+  <title>311 Encampment Reports — Year Comparison</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -15,78 +16,82 @@
     .wrapper { max-width: 1100px; margin: 0 auto; }
     h1 { margin: 0 0 8px 0; font-size: 2rem; line-height: 1.2; color: navy; }
     .subtitle { margin: 0 0 24px 0; color: #555; font-size: 1rem; }
-    .tables-grid { display: flex; gap: 12px; }
-    .table-card {
-      flex: 1; min-width: 0;
+    .chart-card {
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      padding: 20px;
+      padding: 24px 24px 12px;
       border: 1px solid #e5e5e5;
     }
-    .table-card h2 { margin-top: 0; margin-bottom: 4px; font-size: 1.3rem; color: navy; }
-    .table-card h3 { margin-top: 0; margin-bottom: 16px; font-size: 1rem; color: #333; }
-    table.encampment-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; line-height: 1.1; }
-    table.encampment-table th, table.encampment-table td { padding: 4px 6px; text-align: left; border-bottom: 1px solid #eaeaea; }
-    table.encampment-table th { background: #f8f8f8; font-weight: 700; color: #111; }
-    table.encampment-table tr:last-child td { border-bottom: none; }
+    .totals-row { display: flex; gap: 24px; margin-bottom: 18px; flex-wrap: wrap; }
+    .totals-row .stat { font-size: 0.95rem; color: #333; }
+    .totals-row .stat b { display: block; font-size: 1.4rem; }
+    .stat.y2024 b { color: #1f4aff; }
+    .stat.y2025 b { color: #d62728; }
+    canvas { max-height: 420px; }
     .footer-note { margin-top: 18px; font-size: 0.9rem; color: #666; }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <h1>2024: 311 Reports vs. DTP Encampment Counts by Month</h1>
-    <p class="subtitle">Side-by-side monthly comparison</p>
+    <h1>311 Encampment Reports — 2024 vs 2025</h1>
+    <p class="subtitle">Monthly report counts from 311 encampment service requests</p>
 
-    <div class="tables-grid">
-      <div class="table-card">
-        <h2>311 Encampment Reports</h2>
-        <h3>Total: 59348</h3>
-        <table class="encampment-table">
-          <thead><tr><th>Month</th><th>Report Count</th></tr></thead>
-          <tbody>
-            <tr style="color:#1f4aff; font-weight:600;"><td>January</td><td>6642</td></tr>
-            <tr style="color:#d62728; font-weight:600;"><td>February</td><td>5359</td></tr>
-            <tr style="color:#2ca02c; font-weight:600;"><td>March</td><td>5139</td></tr>
-            <tr style="color:#ff00ff; font-weight:600;"><td>April</td><td>4931</td></tr>
-            <tr style="color:#8c564b; font-weight:600;"><td>May</td><td>5394</td></tr>
-            <tr style="color:#17becf; font-weight:600;"><td>June</td><td>4867</td></tr>
-            <tr style="color:#b5a642; font-weight:600;"><td>July</td><td>5406</td></tr>
-            <tr style="color:#98df8a; font-weight:600;"><td>August</td><td>4985</td></tr>
-            <tr style="color:#7f7f7f; font-weight:600;"><td>September</td><td>5199</td></tr>
-            <tr style="color:#c51b8a; font-weight:600;"><td>October</td><td>4656</td></tr>
-            <tr style="color:#6a1b6a; font-weight:600;"><td>November</td><td>3943</td></tr>
-            <tr style="color:#f4a3b4; font-weight:600;"><td>December</td><td>2827</td></tr>
-          </tbody>
-        </table>
+    <div class="chart-card">
+      <div class="totals-row">
+        <div class="stat y2024">2024 Total<b>59,348</b></div>
+        <div class="stat y2025">2025 Total<b>40,051</b></div>
       </div>
-
-      <div class="table-card">
-        <h2>DTP Encampment Counts</h2>
-        <h3>Total: 8933</h3>
-        <table class="encampment-table">
-          <thead><tr><th>Month</th><th>Total Count</th></tr></thead>
-          <tbody>
-            <tr style="color:#1f4aff; font-weight:600;"><td>January</td><td>800</td></tr>
-            <tr style="color:#d62728; font-weight:600;"><td>February</td><td>841</td></tr>
-            <tr style="color:#2ca02c; font-weight:600;"><td>March</td><td>695</td></tr>
-            <tr style="color:#ff00ff; font-weight:600;"><td>April</td><td>690</td></tr>
-            <tr style="color:#8c564b; font-weight:600;"><td>May</td><td>712</td></tr>
-            <tr style="color:#17becf; font-weight:600;"><td>June</td><td>734</td></tr>
-            <tr style="color:#b5a642; font-weight:600;"><td>July</td><td>762</td></tr>
-            <tr style="color:#98df8a; font-weight:600;"><td>August</td><td>742</td></tr>
-            <tr style="color:#7f7f7f; font-weight:600;"><td>September</td><td>668</td></tr>
-            <tr style="color:#c51b8a; font-weight:600;"><td>October</td><td>747</td></tr>
-            <tr style="color:#6a1b6a; font-weight:600;"><td>November</td><td>719</td></tr>
-            <tr style="color:#f4a3b4; font-weight:600;"><td>December</td><td>823</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <canvas id="reports311Chart"></canvas>
     </div>
 
     <p class="footer-note">
-      Sources: 311 Encampment report CSV files (date_requested field) and Downtown Partnership encampment site count exports (MONTH/YEAR/COUNT fields), both for 2024.
+      Source: 311 encampment report exports (date_requested field), aggregated monthly.
     </p>
   </div>
+
+  <script>
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const reports2024 = [6642, 5359, 5139, 4931, 5394, 4867, 5406, 4985, 5199, 4656, 3943, 2827];
+    const reports2025 = [3567, 3268, 3500, 3193, 3293, 3171, 3327, 3970, 3419, 3529, 3181, 2633];
+
+    new Chart(document.getElementById('reports311Chart'), {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [
+          {
+            label: '2024',
+            data: reports2024,
+            borderColor: '#1f4aff',
+            backgroundColor: '#1f4aff',
+            tension: 0.25,
+            pointRadius: 4,
+            borderWidth: 2.5,
+          },
+          {
+            label: '2025',
+            data: reports2025,
+            borderColor: '#d62728',
+            backgroundColor: '#d62728',
+            tension: 0.25,
+            pointRadius: 4,
+            borderWidth: 2.5,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { position: 'top', labels: { usePointStyle: true } },
+          tooltip: { enabled: true },
+        },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Report Count' } },
+        },
+      },
+    });
+  </script>
 </body>
 </html>
